@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Drug Recommendation System</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-5">
+        <!-- Page Header -->
+        <h1 class="text-center mb-2">Smart Drug Recommendation System</h1>
+        <p class="text-center text-muted mb-5">AI-Powered Clinical Decision Support Tool</p>
+        
+        <form action="/recommend" method="POST">
+            
+            <!-- Basic Information Section -->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Basic Information</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="age" class="form-label">Age *</label>
+                            <input type="number" class="form-control" id="age" name="age" min="0" max="120" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="gender" class="form-label">Gender *</label>
+                            <select class="form-select" id="gender" name="gender" required>
+                                <option value="">Select...</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="weight" class="form-label">Weight (kg)</label>
+                            <input type="number" class="form-control" id="weight" name="weight" min="1" max="300" placeholder="Optional">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Symptoms Section -->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">Symptoms</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted mb-3">Select all symptoms the patient is experiencing:</p>
+                    <div class="row">
+                        <div class="col-md-4 mb-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="symptoms" value="fever" id="fever">
+                                <label class="form-check-label" for="fever">
+                                    Fever
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="symptoms" value="cough" id="cough">
+                                <label class="form-check-label" for="cough">
+                                    Cough
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="symptoms" value="joint_pain" id="joint_pain">
+                                <label class="form-check-label" for="joint_pain">
+                                    Joint Pain
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="symptoms" value="headache" id="headache">
+                                <label class="form-check-label" for="headache">
+                                    Headache
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="symptoms" value="nausea" id="nausea">
+                                <label class="form-check-label" for="nausea">
+                                    Nausea
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="symptoms" value="fatigue" id="fatigue">
+                                <label class="form-check-label" for="fatigue">
+                                    Fatigue
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="symptoms" value="chest_pain" id="chest_pain">
+                                <label class="form-check-label" for="chest_pain">
+                                    Chest Pain
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="symptoms" value="dizziness" id="dizziness">
+                                <label class="form-check-label" for="dizziness">
+                                    Dizziness
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Medical History Section -->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0">Medical History</h4>
+                </div>
+                <div class="card-body">
+                    <!-- Known Conditions -->
+                    <label class="form-label fw-bold">Known Medical Conditions:</label>
+                    <div class="row mb-3">
+                        <div class="col-md-3 mb-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="conditions" value="diabetes" id="diabetes">
+                                <label class="form-check-label" for="diabetes">
+                                    Diabetes
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="conditions" value="hypertension" id="hypertension">
+                                <label class="form-check-label" for="hypertension">
+                                    Hypertension
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="conditions" value="kidney_disease" id="kidney_disease">
+                                <label class="form-check-label" for="kidney_disease">
+                                    Kidney Disease
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="conditions" value="liver_disease" id="liver_disease">
+                                <label class="form-check-label" for="liver_disease">
+                                    Liver Disease
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="conditions" value="asthma" id="asthma">
+                                <label class="form-check-label" for="asthma">
+                                    Asthma
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="conditions" value="heart_disease" id="heart_disease">
+                                <label class="form-check-label" for="heart_disease">
+                                    Heart Disease
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Allergies -->
+                    <div class="mb-3">
+                        <label for="allergies" class="form-label fw-bold">Drug Allergies:</label>
+                        <textarea class="form-control" id="allergies" name="allergies" rows="2" placeholder="e.g., Penicillin, Aspirin, Sulfa drugs"></textarea>
+                        <small class="text-muted">List any known drug allergies</small>
+                    </div>
+                    
+                    <!-- Current Medications -->
+                    <div class="mb-3">
+                        <label for="current_meds" class="form-label fw-bold">Current Medications:</label>
+                        <textarea class="form-control" id="current_meds" name="current_meds" rows="2" placeholder="e.g., Metformin 500mg, Amlodipine 5mg"></textarea>
+                        <small class="text-muted">List all medications patient is currently taking</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Lab Values Section -->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">Lab Reports (Optional)</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted mb-3">Enter available lab values for better recommendations:</p>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="blood_sugar" class="form-label">Blood Sugar (mg/dL)</label>
+                            <input type="number" class="form-control" id="blood_sugar" name="blood_sugar" min="0" step="0.1" placeholder="e.g., 110">
+                            <small class="text-muted">Normal: 70-100 (fasting)</small>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="creatinine" class="form-label">Creatinine (mg/dL)</label>
+                            <input type="number" class="form-control" id="creatinine" name="creatinine" min="0" step="0.01" placeholder="e.g., 1.0">
+                            <small class="text-muted">Normal: 0.6-1.2</small>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="blood_pressure" class="form-label">Blood Pressure</label>
+                            <input type="text" class="form-control" id="blood_pressure" name="blood_pressure" placeholder="e.g., 120/80">
+                            <small class="text-muted">Format: systolic/diastolic</small>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="hemoglobin" class="form-label">Hemoglobin (g/dL)</label>
+                            <input type="number" class="form-control" id="hemoglobin" name="hemoglobin" min="0" step="0.1" placeholder="e.g., 14.0">
+                            <small class="text-muted">Normal: 12-16 (varies by gender)</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Submit Button -->
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                    Get Drug Recommendation
+                </button>
+            </div>
+            
+        </form>
+    </div>
+    
+    <!-- Bootstrap JS Bundle (optional, for interactive components) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
